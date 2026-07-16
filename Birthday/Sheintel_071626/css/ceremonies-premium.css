@@ -1,0 +1,141 @@
+#ceremonies {
+  max-width: 1240px;
+}
+
+.ceremonies-grid {
+  gap: 30px;
+  align-items: stretch;
+  grid-auto-rows: 1fr;
+}
+
+.ceremonies-grid article {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto minmax(76px, auto) 1fr;
+  padding: 42px 34px 38px;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 24px;
+  background-color: #08152e;
+  background-position: center;
+  background-size: cover;
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(16px);
+}
+
+.ceremonies-grid article::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(145deg, rgba(5, 15, 35, 0.82), rgba(3, 9, 24, 0.94)),
+    linear-gradient(to bottom, rgba(8, 23, 50, 0.35), rgba(4, 11, 28, 0.72));
+}
+
+.ceremonies-grid article::after {
+  content: "✦";
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  padding: 0 10px;
+  color: var(--gold);
+  background: #0a1831;
+  transform: translateX(-50%);
+  font-size: 0.65rem;
+  z-index: 2;
+}
+
+.ceremonies-grid article:nth-child(1) {
+  background-image: url("../Assets/gallery-6.jpg");
+  background-position: center 35%;
+}
+
+.ceremonies-grid article:nth-child(2) {
+  background-image: url("../Assets/gallery-4.jpg");
+  background-position: center 30%;
+}
+
+.ceremonies-grid article:nth-child(3) {
+  background-image: url("../Assets/gallery-2.jpg");
+}
+
+.ceremonies-grid article:nth-child(4) {
+  background-image: url("../Assets/gallery-8.jpg");
+}
+
+.ceremonies-grid article > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ceremonies-grid h3 {
+  align-self: end;
+  margin: 6px 0 8px;
+  color: var(--gold-light);
+  font-size: 2.1rem;
+}
+
+.ceremonies-grid p {
+  min-height: 76px;
+  margin-bottom: 25px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.13);
+}
+
+.ceremonies-grid ol {
+  align-self: start;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px 24px;
+  text-align: left;
+  list-style: none;
+  counter-reset: none;
+}
+
+.ceremonies-grid li {
+  position: relative;
+  padding-left: 18px;
+  line-height: 1.45;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
+}
+
+.ceremonies-grid li::before {
+  content: "";
+  position: absolute;
+  top: 0.65em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
+@media (max-width: 1050px) {
+  .ceremonies-grid ol {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 850px) {
+  .ceremonies-grid article {
+    padding: 38px 25px 32px;
+  }
+
+  .ceremonies-grid ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .ceremonies-grid ol {
+    grid-template-columns: 1fr;
+  }
+
+  .ceremonies-grid p {
+    min-height: auto;
+  }
+}

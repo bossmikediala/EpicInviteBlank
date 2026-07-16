@@ -1,0 +1,123 @@
+html,
+body {
+  overflow-x: clip;
+}
+
+button,
+input {
+  min-height: 44px;
+}
+
+@media (max-width: 900px) {
+  .shell {
+    width: min(100% - 24px, 1240px);
+    padding-block: 22px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stats article:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .capacity {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .capacity form {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    align-items: end;
+  }
+
+  .capacity input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 650px) {
+  .shell {
+    width: min(100% - 18px, 1240px);
+    padding-block: 12px 24px;
+  }
+
+  .login {
+    margin-block: 4vh;
+    padding: 34px 20px;
+  }
+
+  header {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  header h1 {
+    font-size: 2.25rem;
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .stats article:last-child {
+    grid-column: auto;
+  }
+
+  .stats strong {
+    font-size: 2.5rem;
+  }
+
+  .progress-card,
+  .panel {
+    padding: 22px 17px;
+  }
+
+  .progress-card > div:first-child {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .capacity form {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .capacity button {
+    width: 100%;
+  }
+
+  .table-heading {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .table-heading input {
+    max-width: none;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    min-width: 760px;
+  }
+}

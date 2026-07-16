@@ -1,0 +1,398 @@
+html {
+  overflow-x: clip;
+  scroll-padding-top: 82px;
+}
+
+body {
+  overflow-x: clip;
+}
+
+img,
+iframe {
+  max-width: 100%;
+}
+
+.nav-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 50%;
+  color: var(--gold-light);
+  background: rgba(5, 12, 28, 0.78);
+  font-size: 1rem;
+  box-shadow: none;
+}
+
+@media (max-width: 1100px) {
+  section {
+    padding-block: 88px;
+  }
+
+  .nav {
+    padding-inline: 24px;
+  }
+
+  .nav a {
+    margin-left: 14px;
+    letter-spacing: 0.14em;
+  }
+
+  .hero {
+    min-height: 920px;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ceremonies-grid {
+    gap: 24px;
+  }
+
+  .ceremonies-grid article {
+    padding-inline: 26px;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav {
+    min-height: 68px;
+  }
+
+  .nav-toggle {
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+  }
+
+  .nav > div {
+    position: absolute;
+    top: calc(100% + 1px);
+    right: 16px;
+    left: 16px;
+    display: grid;
+    max-height: 0;
+    overflow: hidden;
+    border: 0 solid rgba(212, 175, 55, 0.2);
+    border-radius: 0 0 18px 18px;
+    background: rgba(3, 10, 25, 0.97);
+    backdrop-filter: blur(18px);
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.35s ease, border-width 0.1s ease;
+  }
+
+  .nav > div.is-open {
+    max-height: 520px;
+    padding: 12px;
+    border-width: 1px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav > div a {
+    min-height: 44px;
+    display: grid;
+    place-items: center;
+    margin: 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+  }
+
+  .nav > div a:last-child {
+    border-bottom: 0;
+  }
+
+  .hero {
+    min-height: 860px;
+    padding-top: 112px;
+  }
+
+  .story-copy {
+    width: min(620px, 100%);
+    margin-inline: auto;
+  }
+
+  .map {
+    height: 330px;
+  }
+
+  .attire-grid {
+    width: min(600px, 100%);
+  }
+
+  .ceremonies-grid {
+    grid-template-columns: 1fr;
+    width: min(720px, 100%);
+    margin-inline: auto;
+  }
+
+  .ceremonies-grid article {
+    grid-template-rows: auto auto 1fr;
+  }
+
+  .ceremonies-grid p {
+    min-height: auto;
+  }
+
+  .ceremonies-grid ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gift-section {
+    min-height: 700px;
+  }
+}
+
+@media (max-width: 640px) {
+  section {
+    padding: 72px 18px;
+  }
+
+  .section-header {
+    margin-bottom: 42px;
+  }
+
+  .section-header h2 {
+    font-size: clamp(2.15rem, 11vw, 2.8rem);
+    line-height: 1.05;
+  }
+
+  .eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+  }
+
+  .hero {
+    min-height: 780px;
+    padding-top: 105px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.4rem, 18vw, 5rem);
+    letter-spacing: 0.04em;
+  }
+
+  .hero-subtitle {
+    letter-spacing: 0.3em;
+  }
+
+  .quote {
+    max-width: 320px;
+    font-size: 1.1rem;
+  }
+
+  .pills {
+    display: grid;
+    width: min(330px, 100%);
+  }
+
+  .pills span {
+    width: 100%;
+  }
+
+  .countdown {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: min(330px, 100%);
+    gap: 9px;
+    margin-block: 34px;
+  }
+
+  .countdown div {
+    padding: 15px 4px;
+    border-radius: 12px;
+  }
+
+  .countdown strong {
+    font-size: 1.85rem;
+  }
+
+  .countdown span {
+    font-size: 0.52rem;
+    letter-spacing: 0.12em;
+  }
+
+  .button {
+    min-height: 48px;
+    padding-inline: 22px;
+  }
+
+  .portrait-slider {
+    width: min(100%, 350px);
+  }
+
+  .portrait span {
+    max-width: calc(100% - 30px);
+    padding-inline: 18px;
+    font-size: 0.75rem;
+  }
+
+  .story-copy h3 {
+    font-size: 2rem;
+  }
+
+  .story-copy p {
+    font-size: 0.92rem;
+  }
+
+  blockquote {
+    font-size: 1.05rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .map {
+    height: 290px;
+  }
+
+  .directions p {
+    font-size: 0.85rem;
+  }
+
+  .palette {
+    gap: 18px 14px;
+  }
+
+  .palette span::before {
+    width: 58px;
+    height: 58px;
+  }
+
+  .attire-grid img {
+    height: 390px;
+    padding-inline: 12px;
+  }
+
+  .ceremonies-grid article {
+    padding: 38px 20px 28px;
+  }
+
+  .ceremonies-grid ol {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    font-size: 0.98rem;
+  }
+
+  .form {
+    padding: 26px 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .wish-card {
+    width: min(330px, 84vw);
+    min-height: 175px;
+    padding: 23px;
+  }
+
+  .chat-head {
+    padding-inline: 16px;
+  }
+
+  .chat-head b {
+    display: none;
+  }
+
+  .chat-messages {
+    height: 300px;
+    padding: 16px;
+  }
+
+  .chat-message {
+    max-width: 92%;
+  }
+
+  .chat-entry {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+
+  .chat-entry .button {
+    width: 100%;
+  }
+
+  .gallery-grid {
+    gap: 13px;
+    grid-auto-rows: 330px;
+  }
+
+  .gallery-item {
+    border-radius: 15px;
+  }
+
+  .lightbox-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .lightbox-prev {
+    left: 8px;
+  }
+
+  .lightbox-next {
+    right: 8px;
+  }
+
+  .gallery-lightbox figcaption {
+    padding-inline: 55px;
+  }
+
+  .gift-section {
+    min-height: 650px;
+    padding-inline: 16px;
+  }
+
+  .gift-card {
+    padding: 38px 20px;
+  }
+
+  .gift-card h2 {
+    font-size: 2.25rem;
+  }
+
+  .qr-placeholder {
+    width: 175px;
+    height: 175px;
+  }
+
+  .gift-methods {
+    line-height: 1.8;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav {
+    padding-inline: 14px;
+  }
+
+  .nav .brand {
+    font-size: 0.92rem;
+    letter-spacing: 0.18em;
+  }
+
+  section {
+    padding-inline: 14px;
+  }
+
+  .countdown strong {
+    font-size: 1.55rem;
+  }
+
+  .countdown span {
+    letter-spacing: 0.06em;
+  }
+
+  .attire-grid img {
+    height: 340px;
+  }
+
+  .gallery-grid {
+    grid-auto-rows: 285px;
+  }
+}

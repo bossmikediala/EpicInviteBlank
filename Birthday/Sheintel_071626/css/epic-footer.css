@@ -1,0 +1,121 @@
+.epic-footer {
+  position: relative;
+  z-index: 4;
+  overflow: hidden;
+  padding: 70px 24px 34px;
+  border-top: 1px solid rgba(212, 175, 55, 0.12);
+  background:
+    radial-gradient(circle at 50% 0, rgba(23, 52, 98, 0.18), transparent 48%),
+    linear-gradient(180deg, #030a1a, #020613);
+  text-align: center;
+}
+
+.epic-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 38%, rgba(212, 175, 55, 0.035), transparent 62%);
+}
+
+.epic-footer-inner {
+  position: relative;
+  width: min(920px, 100%);
+  margin: 0 auto;
+}
+
+.epic-footer-brand {
+  display: inline-block;
+  color: #b8860b;
+  background: linear-gradient(135deg, #8f6507, #d4af37, #9d7110);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font: 300 clamp(2.2rem, 5vw, 3.25rem) var(--serif);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.epic-footer-tagline {
+  margin: 3px 0 28px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.epic-footer-tagline span {
+  color: #b83b70;
+}
+
+.epic-footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 13px;
+}
+
+.epic-footer-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 135px;
+  padding: 11px 20px;
+  border: 1px solid rgba(212, 175, 55, 0.13);
+  border-radius: 999px;
+  color: rgba(230, 241, 255, 0.78);
+  background: rgba(7, 18, 39, 0.48);
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.epic-footer-links i {
+  color: var(--gold);
+}
+
+.epic-footer-links a:hover {
+  color: var(--gold-light);
+  border-color: rgba(212, 175, 55, 0.55);
+  background: rgba(212, 175, 55, 0.08);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+}
+
+.epic-footer-rule {
+  width: 100%;
+  height: 1px;
+  margin: 32px 0 27px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.14), transparent);
+}
+
+.epic-footer-copy {
+  margin: 0;
+  color: rgba(136, 146, 176, 0.62);
+  font: 600 0.62rem var(--sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 520px) {
+  .epic-footer-links {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .epic-footer-links a {
+    width: min(260px, 100%);
+    margin: auto;
+  }
+
+  .epic-footer-copy {
+    line-height: 1.8;
+  }
+}

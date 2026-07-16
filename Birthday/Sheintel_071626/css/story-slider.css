@@ -1,0 +1,79 @@
+.story-grid {
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  gap: clamp(48px, 6vw, 82px);
+  align-items: start;
+}
+
+.story-copy {
+  min-width: 0;
+  align-self: start;
+  padding-top: 0;
+}
+
+.story-copy h3 {
+  margin-top: 0;
+  color: #b8860b;
+  background: linear-gradient(135deg, #8f6507, #c79a20, #9f7410);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 24px rgba(184, 134, 11, 0.12);
+}
+
+.portrait-slider {
+  width: 100%;
+  max-width: 430px;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 3 / 4;
+  justify-self: center;
+}
+
+.portrait-slider .portrait-slide {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transform: scale(1.035);
+  transition:
+    opacity 1.25s ease,
+    transform 5s ease;
+}
+
+.portrait-slider .portrait-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.portrait-slider span {
+  z-index: 3;
+}
+
+@media (max-width: 850px) {
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 55px;
+  }
+
+  .portrait-slider {
+    width: min(100%, 420px);
+    min-height: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .portrait-slider {
+    width: min(100%, 360px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait-slider .portrait-slide {
+    transition: opacity 0.4s ease;
+  }
+}

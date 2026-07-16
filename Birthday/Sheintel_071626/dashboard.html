@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sheintel RSVP Console</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./css/dashboard.css">
+  <link rel="stylesheet" href="./css/dashboard-responsive.css">
+</head>
+<body>
+  <div id="stars"></div>
+  <main class="shell">
+    <section id="login-panel" class="login glass">
+      <i class="fa-solid fa-crown emblem"></i><p class="eyebrow">Private access</p><h1>RSVP Console</h1><p>Sheintel’s 18th Birthday · August 22, 2026</p>
+      <form id="login-form" method="post" action="javascript:void(0)"><label>Username<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><button>Sign in</button><p id="login-message" class="message"></p></form>
+    </section>
+    <section id="dashboard" hidden>
+      <header><div><p class="eyebrow">Sheintel @ 18</p><h1>RSVP Console</h1></div><div class="actions"><button id="refresh-button" class="secondary"><i class="fa-solid fa-rotate"></i> Refresh</button><button id="logout-button" class="secondary"><i class="fa-solid fa-lock"></i> Lock</button></div></header>
+      <p id="dashboard-message" class="message"></p>
+      <section class="stats">
+        <article class="glass"><i class="fa-solid fa-chair"></i><span>Total seats</span><strong id="total-seats">—</strong></article>
+        <article class="glass"><i class="fa-solid fa-people-roof"></i><span>Family reserved</span><strong id="family-seats">—</strong></article>
+        <article class="glass featured"><i class="fa-regular fa-hourglass-half"></i><span>Seats before full</span><strong id="remaining-seats">—</strong></article>
+        <article class="glass"><i class="fa-solid fa-envelope-open-text"></i><span>Submissions</span><strong id="submission-count">—</strong></article>
+        <article class="glass"><i class="fa-solid fa-user-check"></i><span>RSVP seats</span><strong id="rsvp-seats">—</strong></article>
+      </section>
+      <section class="glass progress-card"><div><h2>Public RSVP Capacity</h2><strong><span id="progress-used">0</span> / <span id="progress-capacity">0</span> seats · <span id="progress-percent">0%</span></strong></div><div class="progress"><span id="progress-fill"></span></div></section>
+      <section class="glass panel capacity"><div><p class="eyebrow">Capacity controls</p><h2>Seat Allocation</h2></div><form id="capacity-form"><label>Total seats<input name="total_seats" type="number" min="0" required></label><label>Family seats<input name="reserved_family_seats" type="number" min="0" required></label><button>Save settings</button></form></section>
+      <section class="glass panel"><div class="table-heading"><div><p class="eyebrow">Guest list</p><h2>RSVP Submissions</h2></div><input id="search" type="search" placeholder="Search name, email, or phone"></div><div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Seats</th><th>Status</th><th>Submitted</th></tr></thead><tbody id="rsvp-rows"></tbody></table><p id="empty-state" hidden>No submissions yet.</p></div></section>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script src="../../config.js"></script><script src="./script/supabase.js"></script><script src="./script/dashboard-login.js"></script><script src="./script/dashboard.js"></script>
+</body>
+</html>

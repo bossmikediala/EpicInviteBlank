@@ -1,0 +1,79 @@
+#wishes {
+  max-width: none;
+  overflow: hidden;
+  padding-inline: 0;
+}
+
+#wishes .section-header {
+  padding-inline: 24px;
+}
+
+.wishes-marquee {
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0;
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.wishes-track {
+  display: flex;
+  width: max-content;
+  gap: 20px;
+  padding-right: 20px;
+  will-change: transform;
+}
+
+.wishes-track-top {
+  animation: wishes-left 42s linear infinite;
+}
+
+.wishes-track-bottom {
+  animation: wishes-right 46s linear infinite;
+  transform: translateX(-50%);
+}
+
+.wishes-marquee:hover .wishes-track {
+  animation-play-state: paused;
+}
+
+.wish-card {
+  width: min(390px, 80vw);
+  min-height: 190px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px;
+}
+
+.wish-card i {
+  color: var(--gold);
+}
+
+.wish-card p {
+  color: rgba(255, 255, 255, 0.78);
+  font: italic 1.08rem/1.55 var(--serif);
+}
+
+.wish-card h3 {
+  margin: 0;
+  color: var(--gold);
+  font: 600 0.68rem var(--sans);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+@keyframes wishes-left {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes wishes-right {
+  to { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wishes-track {
+    animation-play-state: paused;
+  }
+}
