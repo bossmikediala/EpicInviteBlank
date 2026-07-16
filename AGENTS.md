@@ -198,6 +198,26 @@ Apply the finalized EpicInvite behavior consistently to every new Birthday and W
 
 When an existing rule is improved during one client project, update these repository instructions so the improvement becomes the default for future projects.
 
+## Git Commit and Push Rules
+
+Do not commit or push changes automatically during normal project work.
+
+Commit and push only in either of these situations:
+
+1. The user explicitly asks to commit, push, or deploy the current changes.
+2. The user says the project is `finished` or says `finish` after the complete project setup and required verification are done.
+
+When the user says a project is finished:
+
+1. Verify the invitation page, RSVP submission, dashboard, project filtering, and responsive layout as applicable.
+2. Confirm that private files and secrets are excluded from Git.
+3. Commit all intended project files and documentation changes.
+4. Push the commit to the current tracked branch, normally `main`.
+5. If the project is already connected to Vercel, deploy or verify the production deployment.
+6. Report the commit, branch, and live page links.
+
+Do not create intermediate commits or push unfinished project work unless the user explicitly requests it.
+
 ## Project Data Requirements
 
 All client projects use the same repository-wide Supabase project and exactly two shared SQL tables. Store Supabase configuration in the repository root, not inside individual client directories.

@@ -281,3 +281,18 @@ Capacity enforcement must occur securely in the database or a trusted server-sid
 - [ ] Dashboard milestone indicators tested
 - [ ] Dashboard RSVP list tested
 - [ ] Mobile layout tested
+
+## Finishing and Publishing
+
+Do not commit or push routine work while a client project is still being developed unless the user explicitly requests it.
+
+The words `finish` or `finished`, when used to indicate that the project is complete, authorize the final workflow:
+
+- Run the relevant completion checks
+- Ensure secrets and private configuration are excluded
+- Commit the completed project
+- Push to the tracked Git branch
+- Deploy or verify Vercel when configured
+- Return the final invitation and dashboard links
+
+An explicit request to commit, push, or deploy also authorizes those requested actions before the project is declared finished.
