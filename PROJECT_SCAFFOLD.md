@@ -9,18 +9,19 @@ Before creating the project, collect:
 1. Project category: Birthday or Wedding
 2. Client name
 3. Event date
-4. Event venue
-5. Event time and timezone
-6. Celebrant or couple pictures for `Assets/`
-7. Branding colors
-8. Website, screenshot, or image references for `Reference/`
-9. RSVP fields to include:
+4. Celebrant's birthdate for Birthday projects
+5. Event venue
+6. Event time and timezone
+7. Celebrant or couple pictures for `Assets/`
+8. Branding colors
+9. Website, screenshot, or image references for `Reference/`
+10. RSVP fields to include:
    - Email
    - Phone number
    - Number of people attending with the guest
-10. Total seat capacity, if it is already known
-11. Family-reserved seats, if already known
-12. What should happen when an RSVP exceeds the remaining seat capacity
+11. Total seat capacity, if it is already known
+12. Family-reserved seats, if already known
+13. What should happen when an RSVP exceeds the remaining seat capacity
 
 Do not ask again for details the user has already supplied.
 
@@ -38,7 +39,7 @@ Wedding/Michael_071625/
 
 ## Web Application
 
-Initialize a deployable web application directly inside the client directory. Its exact structure depends on the selected framework, but it must provide:
+Initialize a deployable plain HTML, CSS, and JavaScript application directly inside the client directory. Do not add Vite, npm, a bundler, or a framework unless explicitly requested. It must provide:
 
 - A main invitation page
 - A private RSVP dashboard
@@ -48,7 +49,7 @@ Initialize a deployable web application directly inside the client directory. It
 - Clear success and error feedback after submission
 - Responsive behavior for phones and desktop browsers
 
-If a plain static implementation is selected, use `index.html`. If a framework is selected, use its standard entry page instead.
+Use `index.html` as the public entry page and load Supabase's browser library through its CDN.
 
 ## Standard Directory Structure
 
@@ -98,13 +99,17 @@ The public `index.html` page should:
 - Validate required and enabled fields
 - Submit responses to the project's Supabase data
 - Show clear success, validation, capacity, and connection messages
+- Ask for final confirmation and warn that the RSVP cannot be edited after submission
+- Hide the RSVP form after a successful submission on that browser
+- Replace the entire form/introduction area with one centered thank-you card after successful submission
 - Work well on mobile and desktop
 
 ### RSVP Dashboard
 
 The private `dashboard.html` page should:
 
-- Read RSVP data from Supabase through an authenticated session or secure server-side endpoint
+- Use the default local script-based username and password screen
+- Read project-scoped RSVP data from Supabase using the publishable browser key
 - Allow authorized users to set and save total seats
 - Allow authorized users to set and save family-reserved seats
 - Show total seats, family-reserved seats, publicly available seats, submitted seats, and remaining seats
@@ -112,8 +117,41 @@ The private `dashboard.html` page should:
 - List guest names and all optional fields enabled for the project
 - Show each submission's date and time
 - Show a compact milestone section, including messages such as `43 seats before full`
+- Show a full-width capacity progress bar below the dashboard statistic cards, with occupied RSVP seats, public RSVP capacity, percentage used, and a colored progress fill
 - Handle loading, empty, and error states
 - Work well on mobile and desktop
+
+### Default Dashboard Credentials
+
+For Birthday projects, generate the temporary client credentials using:
+
+```text
+username = lowercase client name
+temporary password = lowercase client name + birthdate in MMDDYY
+```
+
+Example:
+
+```text
+Samantabi + August 31, 2016
+Username: samantabi
+Temporary password: samantabi083116
+```
+
+The login form displays `Username` and `Password`. Store the generated credentials only in the individual project's dashboard JavaScript.
+
+For the default dashboard login:
+
+- Do not store credentials in Supabase or any database table.
+- Do not use Supabase Authentication.
+- Never store the username or password in browser storage.
+- Store only a project-scoped unlocked flag in `localStorage` after successful login.
+- Do not place credentials directly in the HTML.
+- Keep the login script separate from all Supabase/database scripts. It contains only the generated username, password, and UI unlock/lock behavior.
+- Keep the dashboard unlocked across refreshes until the client clicks the lock/sign-out control or clears browser data.
+- Prevent normal form submission so credentials are never appended to the URL.
+
+This is client-side access control only. It is not equivalent to secure server-side authentication because browser source code and network requests can be inspected. Never embed a Supabase service-role key or database credentials. If stronger privacy is required later, replace the local login with Supabase Auth or a protected server endpoint.
 
 Confirm whether the client also needs:
 
@@ -124,7 +162,7 @@ Confirm whether the client also needs:
 - CSV export
 - Sorting
 
-RSVP records contain personal information. Do not make the dashboard or its database-reading policy publicly accessible. Never put the Supabase service-role key in `dashboard.html` or any browser JavaScript.
+RSVP records contain personal information. The default local-script dashboard is lightweight protection only. Never put the Supabase service-role key in `dashboard.html` or any browser JavaScript.
 
 ## RSVP Form
 
@@ -182,6 +220,8 @@ Only fields enabled for the project need to appear on the public form. Nullable 
 
 Every insert, capacity calculation, and dashboard query must include the correct `project_id`. A dashboard must never retrieve another client's RSVP records.
 
+Dashboard tables must explicitly filter by the current project's `project_id` and show the guest name, enabled contact fields, additional guests, total party size, status, and submission time.
+
 ## Capacity Rules
 
 Remaining seats are calculated as:
@@ -203,7 +243,7 @@ Capacity enforcement must occur securely in the database or a trusted server-sid
 
 - Enable Supabase Row Level Security.
 - Allow public users to submit only the permitted RSVP fields.
-- Do not allow public users to list all RSVP submissions.
+- Limit browser reads to the specific `project_id` used by the dashboard. Note that this is not strong isolation without database authentication.
 - Do not allow public users to change total seat capacity.
 - Keep service-role credentials on the server only.
 - Store the shared Supabase configuration in the repository root environment file and never commit real secrets.
@@ -213,7 +253,8 @@ Capacity enforcement must occur securely in the database or a trusted server-sid
 - [ ] Main invitation page created
 - [ ] Event countdown created and tested
 - [ ] Private RSVP dashboard created
-- [ ] Dashboard access protected
+- [ ] Dashboard local username/password screen created
+- [ ] Login form confirmed not to expose credentials in the URL
 - [ ] `Assets/` directory created
 - [ ] `Reference/` directory created
 - [ ] `script/` directory created
@@ -231,6 +272,10 @@ Capacity enforcement must occur securely in the database or a trusted server-sid
 - [ ] Supabase tables or migrations created
 - [ ] Row Level Security policies created
 - [ ] Form submissions tested
+- [ ] Confirmation warning tested
+- [ ] Completed RSVP state persists on refresh
+- [ ] Form and RSVP introduction are fully hidden after submission
+- [ ] Thank-you card is centered
 - [ ] Seat calculations tested
 - [ ] Dashboard totals tested
 - [ ] Dashboard milestone indicators tested

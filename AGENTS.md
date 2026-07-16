@@ -13,7 +13,7 @@ At the beginning of every new client project, collect the required information b
    - Birthday
    - Wedding
 2. Ask for the client name, then create the client directory automatically using `ClientName_MMDDYY`.
-3. Ask for the event date, venue, and time.
+3. Ask for the event date, venue, and time. For Birthday projects, also ask for the celebrant's birthdate.
 4. Ask the user to upload the celebrant's or couple's pictures. Save them in the project's `Assets/` directory.
 5. Ask for the branding colors.
 6. Ask for design references. References may be websites, screenshots, images, or other visual examples. Store uploaded reference files in `Reference/`.
@@ -60,6 +60,8 @@ The project must include:
 
 Choose the filenames and project structure appropriate for the framework being used. Do not create an additional nested application directory unless the selected framework requires it.
 
+Use plain HTML, CSS, and browser JavaScript by default. Do not add Vite, npm, bundlers, or a framework unless the user explicitly requests one. Load the Supabase browser library through its CDN and keep database code separate from the local dashboard-login script.
+
 For a standard HTML project, create this structure automatically:
 
 ```text
@@ -81,7 +83,34 @@ Every completed client project must provide two pages:
 1. **Invitation and RSVP page** — the public page guests receive. It presents the invitation and submits RSVP responses to Supabase.
 2. **RSVP dashboard** — the private page the client receives. It displays RSVP submissions and seat usage from Supabase.
 
-The dashboard must not expose RSVP data publicly. Add authentication or another approved access-control method before delivery. Public browser code must never contain administrator or Supabase service-role credentials.
+By default, the dashboard uses a local script-based login and does not use Supabase Authentication.
+
+The client-facing dashboard login uses:
+
+- Default username: lowercase client name
+- Default password: lowercase client name followed by the celebrant's birthdate in `MMDDYY`
+
+Example:
+
+```text
+Client name: Samantabi
+Birthdate: August 31, 2016
+Username: samantabi
+Temporary password: samantabi083116
+```
+
+Store these default credentials only in the individual project's dashboard JavaScript:
+
+- Do not store dashboard credentials in Supabase.
+- Do not create a database table for dashboard credentials.
+- Do not use Supabase Authentication for the default dashboard login.
+- Never store the username or password in browser storage.
+- After a successful login, store only a project-scoped unlocked flag in `localStorage` so refreshing the dashboard does not require another login.
+- Do not embed credentials directly in `dashboard.html`.
+
+The login form must use JavaScript-only submission, prevent the browser's default form submission, and never place the username or password in the URL. The unlocked state persists across refreshes until the client explicitly locks the dashboard or clears browser data.
+
+This local login is only a lightweight client-side access screen, not secure database authentication. Because browser JavaScript is inspectable, a technical user can discover the credentials. Never place Supabase service-role keys, database passwords, or other privileged secrets in the dashboard script.
 
 At minimum, the dashboard should show:
 
@@ -98,7 +127,7 @@ At minimum, the dashboard should show:
 
 Ask the user whether any additional dashboard features are needed, such as search, filtering, editing, deletion, attendance status, CSV export, or manual RSVP entry.
 
-The dashboard must allow the authorized client or administrator to set and save:
+The dashboard must allow the locally authenticated client or administrator to set and save:
 
 - Total venue seat capacity
 - Number of seats reserved for family
@@ -133,6 +162,41 @@ The following fields are optional project features:
 Before building a new project's form, ask the user which optional fields should be included unless the user has already specified them.
 
 Form fields must remain easy to edit for the needs of an individual invitation.
+
+Before saving an RSVP, display this confirmation:
+
+```text
+Are you sure? After submitting, you will not be able to edit your RSVP again.
+```
+
+After a successful submission, save a project-scoped completion flag in `localStorage`, hide the form on that browser, and show a response-received message. Do not set the flag when the database submission fails or the guest cancels the confirmation.
+
+The completed RSVP state must:
+
+- Remove the form and RSVP introduction from view completely
+- Show only a centered thank-you card within the RSVP section
+- Remain active after refresh or reopening on the same browser
+- Never hide the form before Supabase confirms a successful insert
+
+## Default Implementation Rules
+
+Apply the finalized EpicInvite behavior consistently to every new Birthday and Wedding project:
+
+- Use plain HTML, CSS, and browser JavaScript unless the user explicitly requests another stack.
+- Use the shared root Supabase configuration and the two shared SQL tables.
+- Keep each project isolated through its `ClientName_MMDDYY` project ID.
+- Keep dashboard login credentials only in a separate project login script.
+- Never put dashboard credentials in HTML, URLs, Supabase, or database tables.
+- Store only a project-specific unlocked flag in `localStorage`.
+- Load RSVP and dashboard database logic from scripts separate from the login script.
+- Query dashboard submissions using an explicit `project_id` filter.
+- Display guest name, enabled contact fields, additional guests, total party size, status, and submission time.
+- Display total seats, family-reserved seats, public RSVP capacity, occupied RSVP seats, remaining seats, and submission count.
+- Display a full-width colored progress bar showing occupied RSVP seats out of public RSVP capacity.
+- Ask for final confirmation before submitting an RSVP.
+- Hide the complete RSVP form after successful submission and center the thank-you state.
+
+When an existing rule is improved during one client project, update these repository instructions so the improvement becomes the default for future projects.
 
 ## Project Data Requirements
 

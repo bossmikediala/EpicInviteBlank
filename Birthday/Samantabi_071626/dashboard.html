@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samantabi RSVP Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/dashboard.css">
+</head>
+<body>
+  <main class="dashboard-shell">
+    <section id="login-panel" class="login-card">
+      <p class="eyebrow">Private client area</p>
+      <h1>RSVP Dashboard</h1>
+      <p>Sign in with your event dashboard credentials.</p>
+      <form id="login-form" method="post" action="javascript:void(0)" autocomplete="on">
+        <label>Username<input name="username" type="text" autocomplete="username" autocapitalize="none" required></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+        <button type="submit">Sign in</button>
+        <p id="login-message" class="message" role="status"></p>
+      </form>
+    </section>
+
+    <section id="dashboard" class="dashboard" hidden>
+      <header class="dashboard-header">
+        <div>
+          <p class="eyebrow">Samantabi · August 31, 2026</p>
+          <h1>RSVP Dashboard</h1>
+        </div>
+        <div class="header-actions">
+          <button id="refresh-button" class="secondary">Refresh</button>
+          <button id="logout-button" class="secondary">Lock dashboard</button>
+        </div>
+      </header>
+
+      <p id="dashboard-message" class="message" role="status"></p>
+
+      <section class="stats" aria-label="RSVP milestones">
+        <article><span>Total seats</span><strong id="total-seats">—</strong></article>
+        <article><span>Family reserved</span><strong id="family-seats">—</strong></article>
+        <article class="featured"><span>Seats before full</span><strong id="remaining-seats">—</strong></article>
+        <article><span>Submissions</span><strong id="submission-count">—</strong></article>
+        <article><span>RSVP seats</span><strong id="rsvp-seats">—</strong></article>
+      </section>
+
+      <section class="capacity-progress" aria-labelledby="capacity-progress-label">
+        <div class="capacity-progress__heading">
+          <div>
+            <p class="eyebrow">RSVP milestone</p>
+            <h2 id="capacity-progress-label"><span id="progress-used">0</span> out of <span id="progress-capacity">0</span> seats reserved</h2>
+          </div>
+          <strong id="progress-percent">0%</strong>
+        </div>
+        <div
+          class="progress-track"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          aria-label="Public RSVP capacity used"
+        >
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+      </section>
+
+      <section class="panel settings-panel">
+        <div>
+          <p class="eyebrow">Capacity settings</p>
+          <h2>Seat allocation</h2>
+        </div>
+        <form id="capacity-form">
+          <label>Total venue seats<input name="total_seats" type="number" min="0" required></label>
+          <label>Family-reserved seats<input name="reserved_family_seats" type="number" min="0" required></label>
+          <button type="submit">Save settings</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="table-heading">
+          <div>
+            <p class="eyebrow">Guest responses</p>
+            <h2>RSVP submissions</h2>
+          </div>
+          <input id="search" type="search" placeholder="Search name or email">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Name</th><th>Email</th><th>Additional guests</th><th>Total people</th><th>Status</th><th>Submitted</th></tr>
+            </thead>
+            <tbody id="rsvp-rows"></tbody>
+          </table>
+          <p id="empty-state" class="empty-state" hidden>No RSVP submissions yet.</p>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="../../config.js"></script>
+  <script src="./script/supabase.js"></script>
+  <script src="./script/dashboard-login.js"></script>
+  <script src="./script/dashboard.js"></script>
+</body>
+</html>
