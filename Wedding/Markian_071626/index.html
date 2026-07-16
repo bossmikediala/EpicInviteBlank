@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Celebrate the wedding of Mark Ian and Sariel.">
+  <title>Mark Ian &amp; Sariel | Wedding RSVP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__content">
+      <p class="eyebrow">Together with their families</p>
+      <h1>Mark Ian <span>&amp;</span> Sariel</h1>
+      <p class="hero__subtitle">invite you to celebrate their wedding</p>
+      <a class="button button--light" href="#rsvp">RSVP</a>
+    </div>
+    <div class="wave" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <section class="section event">
+      <p class="eyebrow">Save the date</p>
+      <h2>January 11, 2027</h2>
+      <p class="event__details">11:00 AM · Parish Church</p>
+      <div class="countdown" aria-label="Countdown to the wedding">
+        <div><strong id="days">0</strong><span>Days</span></div>
+        <div><strong id="hours">0</strong><span>Hours</span></div>
+        <div><strong id="minutes">0</strong><span>Minutes</span></div>
+        <div><strong id="seconds">0</strong><span>Seconds</span></div>
+      </div>
+    </section>
+
+    <section class="section story">
+      <div class="photo-placeholder"><span>Couple photo coming soon</span></div>
+      <div>
+        <p class="eyebrow">Two hearts, one promise</p>
+        <h2>Our forever begins</h2>
+        <p>We would be honored to have you beside us as we exchange vows and begin our life together.</p>
+      </div>
+    </section>
+
+    <section class="section rsvp" id="rsvp">
+      <div class="rsvp__intro">
+        <p class="eyebrow">Kindly respond</p>
+        <h2>Will you celebrate with us?</h2>
+        <p>Please submit one response for your party.</p>
+      </div>
+      <form id="rsvp-form" class="rsvp-form" method="post" action="javascript:void(0)">
+        <label>Full name<input name="name" type="text" autocomplete="name" maxlength="120" required></label>
+        <label>Email address<input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+        <label>Phone number<input name="phone" type="tel" autocomplete="tel" maxlength="30" required></label>
+        <label>
+          Additional guests
+          <input name="additional_guests" type="number" min="0" max="20" value="0" required>
+          <small>Do not include yourself in this number.</small>
+        </label>
+        <button class="button" type="submit">Send my RSVP</button>
+        <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+      </form>
+      <div id="rsvp-complete" class="rsvp-complete" hidden>
+        <p class="eyebrow">Response received</p>
+        <h3>Thank you for your RSVP!</h3>
+        <p>Your response has already been submitted and can no longer be edited from this page.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>Mark Ian &amp; Sariel · 01.11.2027</footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="../../config.js"></script>
+  <script src="./script/supabase.js"></script>
+  <script src="./script/rsvp.js"></script>
+</body>
+</html>
