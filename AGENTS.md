@@ -23,6 +23,28 @@ Do not repeat questions that the user has already answered. If the user provides
 
 The event date and time must be used for a visible countdown section on the public invitation page. Confirm the event timezone if it is not clear from the venue.
 
+## Post-Questionnaire Database Registration
+
+Immediately after the questionnaire is complete, register the client project in the shared Supabase `projects` table. Do this before describing the RSVP form or dashboard as working.
+
+Create or update the row using:
+
+- `project_id`: the exact `ClientName_MMDDYY` directory identifier
+- `client_name`: the client, celebrant, or couple name
+- `event_type`: Birthday or Wedding
+- `total_seats`: the questionnaire value
+- `reserved_family_seats`: the questionnaire value
+
+Use an upsert so rerunning the setup safely updates the intended project row without creating a duplicate.
+
+After registration, query Supabase using the publishable client and verify:
+
+- The exact `project_id` exists
+- `total_seats` matches the questionnaire
+- `reserved_family_seats` matches the questionnaire
+
+Do not continue to final working-page verification or deployment if this database registration is missing or incorrect. If database access is unavailable, clearly tell the user that the generated pages are pending activation and provide the project-specific SQL.
+
 ## Creating a New Client Project
 
 For a new project:

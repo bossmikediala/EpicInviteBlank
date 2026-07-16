@@ -25,6 +25,24 @@ Before creating the project, collect:
 
 Do not ask again for details the user has already supplied.
 
+## Questionnaire Completion Action
+
+Once all required questionnaire answers are known, immediately create or update the project's shared Supabase record before considering the setup complete.
+
+Required row:
+
+```text
+projects.project_id = ClientName_MMDDYY
+projects.client_name = client, celebrant, or couple name
+projects.event_type = Birthday or Wedding
+projects.total_seats = confirmed total venue seats
+projects.reserved_family_seats = confirmed family-reserved seats
+```
+
+Use an upsert and then read the row back through Supabase to verify the exact project ID and seat values. The RSVP trigger and dashboard depend on this row; without it, submissions return `Invalid project ID` and dashboard capacity cannot load.
+
+If Codex cannot write to Supabase directly, generate the project-specific SQL immediately and explicitly mark database activation as pending until the user runs it.
+
 The client directory follows this format:
 
 ```text
