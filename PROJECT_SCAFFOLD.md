@@ -270,6 +270,7 @@ Capacity enforcement must occur securely in the database or a trusted server-sid
 - [ ] Family-reserved seats configured
 - [ ] Capacity behavior confirmed
 - [ ] Supabase tables or migrations created
+- [ ] Exact client project row exists in Supabase with the intended total and family-reserved seat values
 - [ ] Row Level Security policies created
 - [ ] Form submissions tested
 - [ ] Confirmation warning tested

@@ -209,12 +209,14 @@ Commit and push only in either of these situations:
 
 When the user says a project is finished:
 
-1. Verify the invitation page, RSVP submission, dashboard, project filtering, and responsive layout as applicable.
-2. Confirm that private files and secrets are excluded from Git.
-3. Commit all intended project files and documentation changes.
-4. Push the commit to the current tracked branch, normally `main`.
-5. If the project is already connected to Vercel, deploy or verify the production deployment.
-6. Report the commit, branch, and live page links.
+1. Run the project's Supabase setup SQL or confirm that the user has run it.
+2. Verify through the Supabase API that the exact project ID exists in `projects` with the intended total and family-reserved seat values. Do not deploy or describe the RSVP as working while this row is absent.
+3. Verify the invitation page, RSVP submission, dashboard, project filtering, and responsive layout as applicable.
+4. Confirm that private files and secrets are excluded from Git.
+5. Commit all intended project files and documentation changes.
+6. Push the commit to the current tracked branch, normally `main`.
+7. If the project is already connected to Vercel, deploy or verify the production deployment.
+8. Report the commit, branch, and live page links.
 
 Do not create intermediate commits or push unfinished project work unless the user explicitly requests it.
 
