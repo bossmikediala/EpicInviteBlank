@@ -41,7 +41,14 @@ projects.reserved_family_seats = confirmed family-reserved seats
 
 Use an upsert and then read the row back through Supabase to verify the exact project ID and seat values. The RSVP trigger and dashboard depend on this row; without it, submissions return `Invalid project ID` and dashboard capacity cannot load.
 
-If Codex cannot write to Supabase directly, generate the project-specific SQL immediately and explicitly mark database activation as pending until the user runs it.
+If Codex cannot write to Supabase directly:
+
+1. Generate and send the user a ready-to-run `insert ... on conflict ... do update` query for the exact client project.
+2. Explicitly mark database activation as pending.
+3. Ask the user to run it in the Supabase SQL Editor.
+4. Read back and verify the project ID, total seats, and family-reserved seats after the user confirms.
+
+Do not require the user to construct or edit the query when all questionnaire values are already known. Supply it with the correct values filled in.
 
 The client directory follows this format:
 

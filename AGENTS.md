@@ -43,7 +43,41 @@ After registration, query Supabase using the publishable client and verify:
 - `total_seats` matches the questionnaire
 - `reserved_family_seats` matches the questionnaire
 
-Do not continue to final working-page verification or deployment if this database registration is missing or incorrect. If database access is unavailable, clearly tell the user that the generated pages are pending activation and provide the project-specific SQL.
+Do not continue to final working-page verification or deployment if this database registration is missing or incorrect.
+
+If Codex cannot update the Supabase `projects` table directly:
+
+1. Clearly tell the user that database activation is pending.
+2. Immediately provide a project-specific SQL upsert query that the user can paste into the Supabase SQL Editor.
+3. Include the exact project ID, client name, event type, total seats, and family-reserved seats.
+4. Ask the user to run the query.
+5. After the user confirms, read the row back through Supabase and verify the saved values before considering the project active.
+
+Minimum fallback query format:
+
+```sql
+insert into public.projects (
+  project_id,
+  client_name,
+  event_type,
+  total_seats,
+  reserved_family_seats
+)
+values (
+  'ClientName_MMDDYY',
+  'Client Name',
+  'Birthday or Wedding',
+  100,
+  10
+)
+on conflict (project_id) do update
+set
+  client_name = excluded.client_name,
+  event_type = excluded.event_type,
+  total_seats = excluded.total_seats,
+  reserved_family_seats = excluded.reserved_family_seats,
+  updated_at = now();
+```
 
 ## Creating a New Client Project
 

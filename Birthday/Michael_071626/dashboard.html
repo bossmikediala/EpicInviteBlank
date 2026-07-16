@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michael RSVP Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/dashboard.css">
+</head>
+<body>
+  <main class="shell">
+    <section id="login-panel" class="login-card"><p class="eyebrow">Hero command center</p><h1>RSVP Dashboard</h1><form id="login-form" method="post" action="javascript:void(0)"><label>Username<input name="username" required></label><label>Password<input name="password" type="password" required></label><button>Sign in</button><p id="login-message" class="message"></p></form></section>
+    <section id="dashboard" hidden>
+      <header><div><p class="eyebrow">Michael · June 6, 2027</p><h1>RSVP Dashboard</h1></div><div><button id="refresh-button" class="secondary">Refresh</button><button id="logout-button" class="secondary">Lock</button></div></header>
+      <p id="dashboard-message" class="message"></p>
+      <section class="stats"><article><span>Total seats</span><strong id="total-seats">—</strong></article><article><span>Family reserved</span><strong id="family-seats">—</strong></article><article class="featured"><span>Seats before full</span><strong id="remaining-seats">—</strong></article><article><span>Submissions</span><strong id="submission-count">—</strong></article><article><span>RSVP seats</span><strong id="rsvp-seats">—</strong></article></section>
+      <section class="progress-card"><div class="progress-heading"><h2><span id="progress-used">0</span> out of <span id="progress-capacity">0</span> seats reserved</h2><strong id="progress-percent">0%</strong></div><div class="progress-track"><div id="progress-fill"></div></div></section>
+      <section class="panel settings"><div><p class="eyebrow">Capacity</p><h2>Seat allocation</h2></div><form id="capacity-form"><label>Total seats<input name="total_seats" type="number" min="0" required></label><label>Family seats<input name="reserved_family_seats" type="number" min="0" required></label><button>Save</button></form></section>
+      <section class="panel"><div class="table-heading"><h2>RSVP submissions</h2><input id="search" type="search" placeholder="Search name or email"></div><div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Additional</th><th>Total people</th><th>Status</th><th>Submitted</th></tr></thead><tbody id="rsvp-rows"></tbody></table><p id="empty-state" hidden>No submissions yet.</p></div></section>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script src="../../config.js"></script><script src="./script/supabase.js"></script><script src="./script/dashboard-login.js"></script><script src="./script/dashboard.js"></script>
+</body>
+</html>

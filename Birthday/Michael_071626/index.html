@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michael's Superhero Birthday</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__content">
+      <p class="eyebrow">Calling all heroes</p>
+      <h1>Michael</h1>
+      <p>is assembling the ultimate birthday celebration</p>
+      <a class="button" href="#rsvp">Accept the mission</a>
+    </div>
+  </header>
+  <main>
+    <section class="section event">
+      <p class="eyebrow">The mission begins</p>
+      <h2>June 6, 2027</h2>
+      <p>3:00 PM · Michael House</p>
+      <div class="countdown">
+        <div><strong id="days">00</strong><span>Days</span></div>
+        <div><strong id="hours">00</strong><span>Hours</span></div>
+        <div><strong id="minutes">00</strong><span>Minutes</span></div>
+        <div><strong id="seconds">00</strong><span>Seconds</span></div>
+      </div>
+    </section>
+    <section class="section story">
+      <div class="photo-placeholder">Hero photo coming soon</div>
+      <div><p class="eyebrow">Suit up</p><h2>A legendary day awaits</h2><p>Join Michael and the hero squad for an action-packed celebration worthy of a true champion.</p></div>
+    </section>
+    <section class="section rsvp" id="rsvp">
+      <div class="rsvp__intro"><p class="eyebrow">Mission response</p><h2>Will you join the team?</h2><p>Please submit one response for your party.</p></div>
+      <form id="rsvp-form" class="rsvp-form" method="post" action="javascript:void(0)">
+        <label>Full name<input name="name" type="text" autocomplete="name" required></label>
+        <label>Email address<input name="email" type="email" autocomplete="email" required></label>
+        <label>Additional guests<input name="additional_guests" type="number" min="0" max="20" value="0" required><small>Do not include yourself.</small></label>
+        <button class="button" type="submit">Send my RSVP</button>
+        <p id="form-message" class="form-message" role="status"></p>
+      </form>
+      <div id="rsvp-complete" class="rsvp-complete" hidden><p class="eyebrow">Mission accepted</p><h3>Thank you, hero!</h3><p>Your RSVP has been submitted and can no longer be edited from this page.</p></div>
+    </section>
+  </main>
+  <footer>Michael · 06.06.2027</footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="../../config.js"></script>
+  <script src="./script/supabase.js"></script>
+  <script src="./script/rsvp.js"></script>
+</body>
+</html>
