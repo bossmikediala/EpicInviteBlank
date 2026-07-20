@@ -1,0 +1,37 @@
+body {
+  overflow-x: hidden;
+}
+
+.hero {
+  background:
+    linear-gradient(rgba(249, 245, 251, .88), rgba(241, 231, 246, .9)),
+    url("../Reference/floating-purple-petals.jpg") center / cover;
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding-inline: 18px;
+  }
+
+  .hero-card {
+    width: calc(100vw - 36px);
+    padding: 44px 12px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.5rem, 19vw, 4.7rem);
+  }
+
+  .invitation-line {
+    font-size: 1rem;
+  }
+
+  .date-line {
+    font-size: .63rem;
+    letter-spacing: .13em;
+  }
+
+  .venue-line {
+    font-size: .92rem;
+  }
+}
